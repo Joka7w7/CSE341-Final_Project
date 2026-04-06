@@ -25,6 +25,7 @@
             "properties": {
               "name": { "example": "José Chanax" },
               "email": { "example": "jose@email.com" },
+              "password": { "example": "password123" },
               "role": { "example": "admin" }
             }
           }
