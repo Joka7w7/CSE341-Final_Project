@@ -5,7 +5,7 @@ const doc = {
     title: 'TaskFlow API',
     description: 'API for managing tasks, projects, users, and comments',
   },
-  host: 'taskflow-api.onrender.com', // ← update this after Render deploy
+  host: 'cse341-final-project-dafa.onrender.com',
   schemes: ['https']
 };
 

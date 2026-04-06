@@ -5,7 +5,7 @@
     "description": "API for managing tasks, projects, users, and comments",
     "version": "1.0.0"
   },
-  "host": "taskflow-api.onrender.com",
+  "host": "cse341-final-project-dafa.onrender.com",
   "basePath": "/",
   "schemes": ["https"],
   "paths": {
