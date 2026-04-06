@@ -246,21 +246,6 @@
         "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
         "responses": { "204": { "description": "Comment deleted" }, "404": { "description": "Comment not found" } }
       }
-    },
-
-    "/login": {
-      "get": {
-        "tags": ["Auth"],
-        "description": "Login with GitHub OAuth",
-        "responses": { "302": { "description": "Redirects to GitHub" } }
-      }
-    },
-    "/logout": {
-      "get": {
-        "tags": ["Auth"],
-        "description": "Logout current user",
-        "responses": { "302": { "description": "Redirects to home" } }
-      }
     }
   }
 }
