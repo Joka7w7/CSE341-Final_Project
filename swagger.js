@@ -4,6 +4,7 @@ const doc = {
   info: {
     title: 'TaskFlow API',
     description: 'API for managing tasks, projects, users, and comments',
+    owner: 'José Chanax'
   },
   host: 'cse341-final-project-dafa.onrender.com',
   schemes: ['https']
