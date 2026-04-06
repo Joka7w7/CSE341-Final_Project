@@ -1,0 +1,265 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "TaskFlow API",
+    "description": "API for managing tasks, projects, users, and comments",
+    "version": "1.0.0"
+  },
+  "host": "taskflow-api.onrender.com",
+  "basePath": "/",
+  "schemes": ["https"],
+  "paths": {
+    "/users/": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Get all users",
+        "responses": { "200": { "description": "List of users" }, "401": { "description": "Unauthorized" } }
+      },
+      "post": {
+        "tags": ["Users"],
+        "description": "Create a new user",
+        "parameters": [{
+          "name": "body", "in": "body", "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "name": { "example": "José Chanax" },
+              "email": { "example": "jose@email.com" },
+              "role": { "example": "admin" }
+            }
+          }
+        }],
+        "responses": { "201": { "description": "User created" }, "400": { "description": "Invalid input" } }
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "description": "Get a user by ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "User found" }, "404": { "description": "User not found" } }
+      },
+      "put": {
+        "tags": ["Users"],
+        "description": "Update a user",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          {
+            "name": "body", "in": "body", "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "example": "José Chanax" },
+                "email": { "example": "jose@email.com" },
+                "role": { "example": "admin" }
+              }
+            }
+          }
+        ],
+        "responses": { "204": { "description": "User updated" }, "404": { "description": "User not found" } }
+      },
+      "delete": {
+        "tags": ["Users"],
+        "description": "Delete a user",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "204": { "description": "User deleted" }, "404": { "description": "User not found" } }
+      }
+    },
+
+    "/projects/": {
+      "get": {
+        "tags": ["Projects"],
+        "description": "Get all projects",
+        "responses": { "200": { "description": "List of projects" } }
+      },
+      "post": {
+        "tags": ["Projects"],
+        "description": "Create a new project",
+        "parameters": [{
+          "name": "body", "in": "body", "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "name": { "example": "TaskFlow App" },
+              "description": { "example": "Main project" },
+              "ownerId": { "example": "64abc123..." },
+              "members": { "example": [] }
+            }
+          }
+        }],
+        "responses": { "201": { "description": "Project created" }, "400": { "description": "Invalid input" } }
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "tags": ["Projects"],
+        "description": "Get a project by ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "Project found" }, "404": { "description": "Project not found" } }
+      },
+      "put": {
+        "tags": ["Projects"],
+        "description": "Update a project",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          {
+            "name": "body", "in": "body", "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": { "example": "TaskFlow App" },
+                "description": { "example": "Updated description" },
+                "ownerId": { "example": "64abc123..." },
+                "members": { "example": [] }
+              }
+            }
+          }
+        ],
+        "responses": { "204": { "description": "Project updated" }, "404": { "description": "Project not found" } }
+      },
+      "delete": {
+        "tags": ["Projects"],
+        "description": "Delete a project",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "204": { "description": "Project deleted" }, "404": { "description": "Project not found" } }
+      }
+    },
+
+    "/tasks/": {
+      "get": {
+        "tags": ["Tasks"],
+        "description": "Get all tasks",
+        "responses": { "200": { "description": "List of tasks" } }
+      },
+      "post": {
+        "tags": ["Tasks"],
+        "description": "Create a new task",
+        "parameters": [{
+          "name": "body", "in": "body", "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "title": { "example": "Build login page" },
+              "description": { "example": "Implement OAuth login" },
+              "status": { "example": "pending" },
+              "priority": { "example": "high" },
+              "dueDate": { "example": "2025-06-01" },
+              "projectId": { "example": "64abc123..." },
+              "assignedTo": { "example": "64def456..." }
+            }
+          }
+        }],
+        "responses": { "201": { "description": "Task created" }, "400": { "description": "Invalid input" } }
+      }
+    },
+    "/tasks/{id}": {
+      "get": {
+        "tags": ["Tasks"],
+        "description": "Get a task by ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "Task found" }, "404": { "description": "Task not found" } }
+      },
+      "put": {
+        "tags": ["Tasks"],
+        "description": "Update a task",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          {
+            "name": "body", "in": "body", "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": { "example": "Build login page" },
+                "description": { "example": "Implement OAuth login" },
+                "status": { "example": "in progress" },
+                "priority": { "example": "high" },
+                "dueDate": { "example": "2025-06-01" },
+                "projectId": { "example": "64abc123..." },
+                "assignedTo": { "example": "64def456..." }
+              }
+            }
+          }
+        ],
+        "responses": { "204": { "description": "Task updated" }, "404": { "description": "Task not found" } }
+      },
+      "delete": {
+        "tags": ["Tasks"],
+        "description": "Delete a task",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "204": { "description": "Task deleted" }, "404": { "description": "Task not found" } }
+      }
+    },
+
+    "/comments/": {
+      "get": {
+        "tags": ["Comments"],
+        "description": "Get all comments",
+        "responses": { "200": { "description": "List of comments" } }
+      },
+      "post": {
+        "tags": ["Comments"],
+        "description": "Create a new comment",
+        "parameters": [{
+          "name": "body", "in": "body", "required": true,
+          "schema": {
+            "type": "object",
+            "properties": {
+              "taskId": { "example": "64abc123..." },
+              "userId": { "example": "64def456..." },
+              "content": { "example": "This task needs more details." }
+            }
+          }
+        }],
+        "responses": { "201": { "description": "Comment created" }, "400": { "description": "Invalid input" } }
+      }
+    },
+    "/comments/{id}": {
+      "get": {
+        "tags": ["Comments"],
+        "description": "Get a comment by ID",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "Comment found" }, "404": { "description": "Comment not found" } }
+      },
+      "put": {
+        "tags": ["Comments"],
+        "description": "Update a comment",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          {
+            "name": "body", "in": "body", "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "taskId": { "example": "64abc123..." },
+                "userId": { "example": "64def456..." },
+                "content": { "example": "Updated comment text." }
+              }
+            }
+          }
+        ],
+        "responses": { "204": { "description": "Comment updated" }, "404": { "description": "Comment not found" } }
+      },
+      "delete": {
+        "tags": ["Comments"],
+        "description": "Delete a comment",
+        "parameters": [{ "name": "id", "in": "path", "required": true, "type": "string" }],
+        "responses": { "204": { "description": "Comment deleted" }, "404": { "description": "Comment not found" } }
+      }
+    },
+
+    "/login": {
+      "get": {
+        "tags": ["Auth"],
+        "description": "Login with GitHub OAuth",
+        "responses": { "302": { "description": "Redirects to GitHub" } }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": ["Auth"],
+        "description": "Logout current user",
+        "responses": { "302": { "description": "Redirects to home" } }
+      }
+    }
+  }
+}
