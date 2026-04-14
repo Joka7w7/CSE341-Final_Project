@@ -1,15 +1,16 @@
 const request = require('supertest');
-const app = require('../app');
+
+const BASE_URL = 'https://cse341-final-project-dafa.onrender.com';
 
 describe('Users GET Endpoints', () => {
   test('GET /users - should return 200 and an array', async () => {
-    const res = await request(app).get('/users');
+    const res = await request(BASE_URL).get('/users');
     expect(res.statusCode).toBe(200);
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  test('GET /users/:id - should return 400 or 404 with invalid id', async () => {
-    const res = await request(app).get('/users/000000000000000000000000');
-    expect([400, 404, 500]).toContain(res.statusCode);
+  test('GET /users/:id - should return 404 or 500 with fake id', async () => {
+    const res = await request(BASE_URL).get('/users/000000000000000000000000');
+    expect([404, 500]).toContain(res.statusCode);
   });
 });
